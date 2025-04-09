@@ -35,3 +35,11 @@
 /* @import "@ionic/angular/css/palettes/dark.always.css"; */
 /* @import "@ionic/angular/css/palettes/dark.class.css"; */
 @import "@ionic/angular/css/palettes/dark.system.css";
+
+
+/**
+* App Custom Styles
+*/
+@import './theme/fonts.scss';
+@import './theme/variables.scss';
+@import './theme/base.scss';
