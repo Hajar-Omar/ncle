@@ -1,0 +1,8 @@
+.header-md {
+  box-shadow: none;
+}
+
+ion-toolbar::part(content) {
+  background: var(--primary);
+  color: #fff;
+}

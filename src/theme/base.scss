@@ -6,3 +6,15 @@ body {
 * {
   font-family: "Nunito";
 }
+
+a {
+  &:hover,
+  &,
+  &:visited {
+    color: #000;
+  }
+}
+
+.list-style-none {
+  list-style: none;
+}

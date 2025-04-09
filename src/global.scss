@@ -36,10 +36,10 @@
 /* @import "@ionic/angular/css/palettes/dark.class.css"; */
 @import "@ionic/angular/css/palettes/dark.system.css";
 
-
+@import "node_modules/bootstrap/dist/css/bootstrap.min.css";
 /**
 * App Custom Styles
 */
-@import './theme/fonts.scss';
-@import './theme/variables.scss';
-@import './theme/base.scss';
+@import "./theme/fonts.scss";
+@import "./theme/variables.scss";
+@import "./theme/base.scss";
