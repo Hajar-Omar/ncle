@@ -7,7 +7,8 @@ import { IonicModule } from '@ionic/angular';
 import { SubscriptionPageRoutingModule } from './subscription-routing.module';
 
 import { SubscriptionPage } from './subscription.page';
-import { HeaderComponent } from '../core/components/header/header.component';
+import { FormComponent } from './components/form/form.component';
+import { SummaryComponent } from './components/summary/summary.component';
 
 @NgModule({
   imports: [
@@ -15,7 +16,8 @@ import { HeaderComponent } from '../core/components/header/header.component';
     FormsModule,
     IonicModule,
     SubscriptionPageRoutingModule,
-    HeaderComponent,
+    FormComponent,
+    SummaryComponent,
   ],
   declarations: [SubscriptionPage],
 })

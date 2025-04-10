@@ -1,0 +1,16 @@
+section {
+  background-color: var(--light-primary);
+  border-radius: 0 24px 24px 0;
+
+  @media screen and (max-width: 991px) {
+    border-radius: 0 0 24px 24px;
+  }
+
+  span {
+    font-size: 0.8rem;
+  }
+
+  .card {
+    border: none;
+  }
+}

@@ -1,0 +1,217 @@
+<section class="p-5 h-100">
+  <h5 class="fw-bold">Subscribe</h5>
+  <p>to our Monthly Surprise Box</p>
+
+  <ion-breadcrumbs>
+    <ion-breadcrumb
+      *ngFor="let step of steps; let last = last"
+      [routerLink]="step.path"
+      [active]="step.active"
+      [disabled]="last"
+    >
+      {{ step.label }}
+    </ion-breadcrumb>
+  </ion-breadcrumbs>
+
+  <hr />
+
+  <form [formGroup]="subscriptionForm" (ngSubmit)="onSubmit()">
+    <h5 class="fw-bold">Contact Information</h5>
+
+    <div class="mb-3 d-flex flex-column gap-2">
+      <ion-label>Your Name</ion-label>
+      <ion-input
+        type="text"
+        formControlName="yourName"
+        fill="outline"
+        placeholder="e.g Osama Alshathri"
+      ></ion-input>
+      <ion-note
+        color="danger"
+        *ngIf="
+          subscriptionForm.get('yourName')?.hasError('required') &&
+          subscriptionForm.get('yourName')?.touched
+        "
+      >
+        Your name is required.
+      </ion-note>
+    </div>
+
+    <div class="mb-3 d-flex flex-column gap-2">
+      <ion-label>Email</ion-label>
+      <ion-input
+        type="email"
+        inputmode="email"
+        fill="outline"
+        placeholder="Osama@gmail.com"
+        formControlName="email"
+      ></ion-input>
+      <ion-note
+        color="danger"
+        *ngIf="
+          subscriptionForm.get('email')?.hasError('required') &&
+          subscriptionForm.get('email')?.touched
+        "
+      >
+        Email is required.
+      </ion-note>
+      <ion-note
+        color="danger"
+        *ngIf="
+          subscriptionForm.get('email')?.hasError('email') &&
+          subscriptionForm.get('email')?.touched
+        "
+      >
+        Please enter a valid email.
+      </ion-note>
+    </div>
+
+    <h5 class="fw-bold mt-4">Child’s Information</h5>
+
+    <div class="mb-3 d-flex flex-column gap-2">
+      <ion-label>Child’s Full Name</ion-label>
+      <ion-input
+        type="text"
+        fill="outline"
+        placeholder="e.g Sarah Mohammad"
+        formControlName="childFullName"
+      ></ion-input>
+      <ion-note
+        color="danger"
+        *ngIf="
+          subscriptionForm.get('childFullName')?.hasError('required') &&
+          subscriptionForm.get('childFullName')?.touched
+        "
+      >
+        Child's full name is required.
+      </ion-note>
+    </div>
+
+    <div class="mb-3 d-flex flex-column gap-2">
+      <ion-label>Child’s Date of Birth</ion-label>
+      <div class="d-flex gap-2">
+        <ion-select fill="outline" formControlName="birthDay" placeholder="Day">
+          <ion-select-option *ngFor="let day of days" [value]="day">{{
+            day
+          }}</ion-select-option>
+        </ion-select>
+        <ion-select
+          fill="outline"
+          formControlName="birthMonth"
+          placeholder="Month"
+        >
+          <ion-select-option *ngFor="let month of months" [value]="month">{{
+            month
+          }}</ion-select-option>
+        </ion-select>
+        <ion-select
+          fill="outline"
+          formControlName="birthYear"
+          placeholder="Year"
+        >
+          <ion-select-option *ngFor="let year of years" [value]="year">{{
+            year
+          }}</ion-select-option>
+        </ion-select>
+      </div>
+      <ion-note
+        color="danger"
+        *ngIf="
+          subscriptionForm.get('birthDay')?.hasError('required') &&
+          subscriptionForm.get('birthDay')?.touched
+        "
+      >
+        Day is required.
+      </ion-note>
+      <ion-note
+        color="danger"
+        *ngIf="
+          subscriptionForm.get('birthMonth')?.hasError('required') &&
+          subscriptionForm.get('birthMonth')?.touched
+        "
+      >
+        Month is required.
+      </ion-note>
+      <ion-note
+        color="danger"
+        *ngIf="
+          subscriptionForm.get('birthYear')?.hasError('required') &&
+          subscriptionForm.get('birthYear')?.touched
+        "
+      >
+        Year is required.
+      </ion-note>
+    </div>
+
+    <div class="mb-3 d-flex flex-column gap-2">
+      <ion-label>Grade</ion-label>
+      <ion-select
+        fill="outline"
+        formControlName="grade"
+        placeholder="Select Grade"
+      >
+        <ion-select-option *ngFor="let grade of grades" [value]="grade">{{
+          grade
+        }}</ion-select-option>
+      </ion-select>
+      <ion-note
+        color="danger"
+        *ngIf="
+          subscriptionForm.get('grade')?.hasError('required') &&
+          subscriptionForm.get('grade')?.touched
+        "
+      >
+        Grade is required.
+      </ion-note>
+    </div>
+
+    <div class="mb-3 d-flex flex-column gap-2">
+      <ion-label>Gender</ion-label>
+
+      <ion-radio-group formControlName="gender">
+        <ion-row>
+          <ion-col size="6">
+            <ion-item>
+              <ion-radio value="Girl">Girl</ion-radio>
+            </ion-item></ion-col
+          >
+          <ion-col size="6">
+            <ion-item>
+              <ion-radio value="Boy">Boy</ion-radio>
+            </ion-item></ion-col
+          >
+        </ion-row>
+      </ion-radio-group>
+    </div>
+
+    <h5 class="fw-bold mt-4">As a parent select any 3 topics</h5>
+
+    <div class="mb-3 d-flex flex-column gap-2">
+      <ion-row>
+        <ion-list *ngFor="let topic of topics" class="custom-checkbox-item">
+          <ion-item class="rounded me-2">
+            <ion-checkbox
+              [value]="topic.value"
+              (ionChange)="onTopicChange($event)"
+              >{{ topic.label }}</ion-checkbox
+            >
+          </ion-item>
+        </ion-list></ion-row
+      >
+
+      <ion-note
+        color="danger"
+        *ngIf="
+          subscriptionForm.get('selectedTopics')?.hasError('required') &&
+          subscriptionForm.get('selectedTopics')?.touched
+        "
+      >
+        Please select at least 3 topics.
+      </ion-note>
+    </div>
+
+    <ion-button fill="outline" type="submit" class="mt-5 w-100"
+      >Continue to payment</ion-button
+    >
+  </form>
+</section>

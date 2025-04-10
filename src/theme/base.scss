@@ -18,3 +18,78 @@ a {
 .list-style-none {
   list-style: none;
 }
+
+.bs-primary {
+  background-color: var(--primary);
+}
+
+img {
+  max-width: 100%;
+}
+
+ion-content {
+  min-height: calc(100vh - 22rem);
+}
+
+ion-button::part(native) {
+  box-shadow: 4px 4px 0px -1px #896af9;
+  padding: 1.3rem 1.5rem;
+  border-radius: 24px;
+  color: var(--primary);
+  background-color: #fff;
+  border-color: var(--primary);
+  font-weight: 900;
+  font-size: 1.1rem;
+}
+
+.text-gray {
+  color: var(--gray);
+}
+
+ion-select,
+.input-fill-outline.sc-ion-input-md-h {
+  --border-color: var(
+    --ion-color-step-300,
+    var(--ion-background-color-step-300, #d0d5dd)
+  );
+
+  --border-radius: 0.5rem;
+  min-height: 44px;
+}
+ion-item {
+  &::part(native) {
+    border-radius: 0.5rem;
+    border: 1px solid #d0d5dd;
+
+    padding: 0 1rem;
+  }
+
+  &.rounded {
+    &::part(native) {
+      border-radius: 1.5rem;
+    }
+  }
+}
+
+ion-radio {
+  --border-radius: 4px;
+  --inner-border-radius: 4px;
+
+  --color: #ddd;
+  --color-checked: var(--primary);
+}
+
+ion-radio.ios::part(container) {
+  width: 20px;
+  height: 20px;
+  border: 2px solid #ddd;
+  border-radius: 4px;
+}
+
+.radio-checked.ios::part(container) {
+  border-color: var(--primary);
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}
