@@ -103,6 +103,9 @@ export class FormComponent implements OnInit {
     }
   }
 
+  /**
+   * Initialize the form group
+   */
   private _initForm() {
     this.subscriptionForm = this.fb.group({
       yourName: ['', Validators.required],

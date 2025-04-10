@@ -1,5 +1,15 @@
+/**
+ * An array of numbers representing the days of a month (1-31).
+ *
+ * @constant {number[]}
+ */
 export const DAYS: number[] = Array.from({ length: 31 }, (_, i) => i + 1);
 
+/**
+ * An array of strings representing the 12 months of the year.
+ *
+ * @constant {string[]}
+ */
 export const MONTHS: string[] = [
   'January',
   'February',
@@ -15,11 +25,23 @@ export const MONTHS: string[] = [
   'December',
 ];
 
+/**
+ * An array of numbers representing the last 100 years.
+ *
+ * The array is generated dynamically based on the current year.
+ *
+ * @constant {number[]}
+ */
 export const YEARS: number[] = Array.from(
   { length: 100 },
   (_, i) => new Date().getFullYear() - i
 );
 
+/**
+ * An array of strings representing the different grades in a school.
+ *
+ * @constant {string[]}
+ */
 export const GRADES: string[] = [
   'KG1',
   'KG2',
