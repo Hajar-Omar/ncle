@@ -2,6 +2,7 @@ import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { IonicModule } from '@ionic/angular';
 
 import { DiscoverSectionComponent } from './discover-section.component';
+import { RouterTestingModule } from '@angular/router/testing';
 
 describe('DiscoverSectionComponent', () => {
   let component: DiscoverSectionComponent;
@@ -9,8 +10,7 @@ describe('DiscoverSectionComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [DiscoverSectionComponent],
-      imports: [IonicModule.forRoot()],
+      imports: [IonicModule.forRoot(), RouterTestingModule],
     }).compileComponents();
 
     fixture = TestBed.createComponent(DiscoverSectionComponent);
