@@ -4,6 +4,10 @@ section {
   background-color: var(--light-yellow);
   color: #000;
 
+  @media screen and (max-width: 768px) {
+    background-image: none;
+  }
+
   .main-box {
     strong {
       font-size: 2rem;
