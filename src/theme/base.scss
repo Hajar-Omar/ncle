@@ -56,6 +56,7 @@ ion-select,
   --border-radius: 0.5rem;
   min-height: 44px;
 }
+
 ion-item {
   &::part(native) {
     border-radius: 0.5rem;
@@ -71,25 +72,64 @@ ion-item {
   }
 }
 
-ion-radio {
-  --border-radius: 4px;
-  --inner-border-radius: 4px;
-
-  --color: #ddd;
-  --color-checked: var(--primary);
-}
-
-ion-radio.ios::part(container) {
-  width: 20px;
-  height: 20px;
-  border: 2px solid #ddd;
-  border-radius: 4px;
-}
-
-.radio-checked.ios::part(container) {
-  border-color: var(--primary);
-}
-
 .cursor-pointer {
   cursor: pointer;
+}
+
+ion-radio {
+  &::part(container) {
+    border: 2px solid var(--light-gray);
+    border-radius: 50%;
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+
+    &::before {
+      content: "\2713";
+      font-weight: 900;
+      color: var(--light-gray);
+    }
+  }
+
+  &::part(mark) {
+    display: none;
+  }
+
+  &.radio-checked::part(container) {
+    border-color: var(--primary);
+
+    &::before {
+      content: "\2713";
+      color: var(--primary);
+    }
+  }
+}
+
+ion-checkbox {
+  border: 1px solid var(--light-gray);
+  border-radius: 2rem;
+  padding: 0.7rem 1rem;
+  box-shadow: 0px 1px 2px 0px #1018280d;
+
+  &::part(container) {
+    display: none;
+  }
+
+  &::part(label) {
+    margin: 0 1rem;
+  }
+
+  &.checkbox-checked {
+    border: 1px solid var(--dark-primary);
+    background-color: var(--bg-light-primary);
+    color: var(--dark-primary);
+  }
+}
+
+ion-item {
+  --border-color: transparent;
+  --inner-padding-end: 0;
 }

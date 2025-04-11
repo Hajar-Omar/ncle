@@ -92,7 +92,6 @@ export class FormComponent implements OnInit {
       );
       selectedTopicsArray.removeAt(index);
     }
-    console.log(selectedTopicsArray.valid);
   }
 
   ngOnInit() {}
