@@ -66,8 +66,6 @@ export const TOPICS: { label: string; value: string }[] = [
 ];
 
 export const STEPS = [
-  { label: 'Cart', path: '/cart' },
-  { label: 'Information', path: '/checkout/information' },
-  { label: 'Shipping', path: '/checkout/shipping' },
+  { label: 'Home', path: '/' },
   { label: 'Payment', active: true },
 ];
