@@ -4,13 +4,17 @@
  * @param {number} min The minimum number of checkboxes that must be selected.
  * @returns A validator function that checks the minimum selection requirement.
  */
-export function minSelectedCheckboxes(min = 1) {
-  const validator = (formArray) => {
-    const totalSelected = formArray.controls
-      .map((control) => control.value)
-      .reduce((prev, next) => (next ? prev + next : prev), 0);
-    return totalSelected >= min ? null : { required: true };
-  };
 
-  return validator;
+import {
+  ValidatorFn,
+  AbstractControl,
+  ValidationErrors,
+  FormArray,
+} from '@angular/forms';
+
+export function minArrayLengthValidator(min = 1): ValidatorFn {
+  return (formArray: AbstractControl): ValidationErrors | null => {
+    const array = formArray as FormArray;
+    return array.length >= min ? null : { minLength: true };
+  };
 }

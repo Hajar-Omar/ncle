@@ -3,7 +3,7 @@ import { IonicModule } from '@ionic/angular';
 
 import { FormComponent } from './form.component';
 import { RouterTestingModule } from '@angular/router/testing';
-import { ReactiveFormsModule, Validators } from '@angular/forms';
+import { FormArray, ReactiveFormsModule, Validators } from '@angular/forms';
 import {
   DAYS,
   MONTHS,
@@ -13,7 +13,7 @@ import {
   TOPICS,
   STEPS,
 } from 'src/app/shared/constants/lookup';
-import { minSelectedCheckboxes } from 'src/app/shared/utils/validators';
+import { minArrayLengthValidator } from 'src/app/shared/utils/validators';
 
 describe('FormComponent', () => {
   let component: FormComponent;
@@ -44,32 +44,33 @@ describe('FormComponent', () => {
         component.fb.control(true),
         component.fb.control(true),
       ]);
-      const validator = minSelectedCheckboxes(3)(control);
+      const validator = minArrayLengthValidator(3)(control);
       expect(validator).toBeNull();
     });
 
-    it('should be invalid if less than 3 checkboxes are selected', () => {
-      const control = component.fb.array([
-        component.fb.control(true),
-        component.fb.control(true),
-        component.fb.control(false),
-      ]);
-      const validator = minSelectedCheckboxes(3)(control);
-      expect(validator).toEqual({ required: true });
-    });
-
     it('should work correctly with the FormArray in the component', () => {
-      // component.subscriptionForm
-      //   .get('selectedTopics')
-      //   ?.patchValue(['Arabic', 'Hisory', 'Sports']);
-      // component.subscriptionForm.get('selectedTopics')?.markAsTouched();
-      // fixture.detectChanges();
-      // expect(component.subscriptionForm.valid).toBeTrue();
+      const selectedTopicsControl = component.subscriptionForm.get(
+        'selectedTopics'
+      ) as FormArray;
 
-      component.subscriptionForm.get('selectedTopics')?.patchValue(['Arabic', 'Hisory']);
+      // test 3 values > valid
+      selectedTopicsControl.clear();
+      selectedTopicsControl.push(component.fb.control('Arabic'));
+      selectedTopicsControl.push(component.fb.control('Hisory'));
+      selectedTopicsControl.push(component.fb.control('Sports'));
+
+      selectedTopicsControl.markAsTouched();
+      fixture.detectChanges();
+      expect(selectedTopicsControl.valid).toBeTrue();
+
+      // test 2 values > invalid
+      selectedTopicsControl.clear();
+      component.subscriptionForm
+        .get('selectedTopics')
+        ?.patchValue(['Arabic', 'Hisory']);
       component.subscriptionForm.get('selectedTopics')?.markAsTouched();
       fixture.detectChanges();
-      expect(component.subscriptionForm.invalid).toBeTrue();
+      expect(selectedTopicsControl.invalid).toBeTrue();
     });
   });
 

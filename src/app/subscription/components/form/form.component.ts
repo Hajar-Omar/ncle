@@ -1,6 +1,7 @@
 import { NgFor, NgIf } from '@angular/common';
 import { Component, inject, OnInit } from '@angular/core';
 import {
+  FormArray,
   FormBuilder,
   FormGroup,
   ReactiveFormsModule,
@@ -33,7 +34,7 @@ import {
   TOPICS,
   YEARS,
 } from 'src/app/shared/constants/lookup';
-import { minSelectedCheckboxes } from 'src/app/shared/utils/validators';
+import { minArrayLengthValidator } from 'src/app/shared/utils/validators';
 
 @Component({
   selector: 'app-form',
@@ -81,7 +82,7 @@ export class FormComponent implements OnInit {
   onTopicChange(event) {
     const selectedTopicsArray = this.subscriptionForm.get(
       'selectedTopics'
-    ) as any;
+    ) as FormArray;
 
     if (event.detail.checked) {
       selectedTopicsArray.push(this.fb.control(event.detail.value));
@@ -91,6 +92,7 @@ export class FormComponent implements OnInit {
       );
       selectedTopicsArray.removeAt(index);
     }
+    console.log(selectedTopicsArray.valid);
   }
 
   ngOnInit() {}
@@ -121,7 +123,7 @@ export class FormComponent implements OnInit {
 
       selectedTopics: this.fb.array(
         [],
-        [Validators.required, minSelectedCheckboxes(3)]
+        [Validators.required, minArrayLengthValidator(3)]
       ), // FormArray for multiple selections
     });
   }
